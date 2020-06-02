@@ -10,6 +10,9 @@
             <v-toolbar-title>Page title</v-toolbar-title>
 
             <v-spacer></v-spacer>
+            <v-btn icon href="/logout">
+                <v-icon>exit_to_app</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-navigation-drawer
@@ -62,6 +65,7 @@
         name: "AppBar",
         data(){
             return {
+                group: [],
                 drawer: false,
             }
         }
