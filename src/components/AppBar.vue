@@ -11,7 +11,7 @@
 
             <v-spacer></v-spacer>
             <v-btn icon href="/logout">
-                <v-icon>exit_to_app</v-icon>
+                <v-icon color="white">mdi-exit-to-app</v-icon>
             </v-btn>
         </v-app-bar>
 
@@ -52,6 +52,13 @@
                             <v-icon>mdi-account</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title>Account</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item>
+                        <v-list-item-icon>
+                            <v-icon>mdi-exit-to-app</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Exit</v-list-item-title>
                     </v-list-item>
 
                 </v-list-item-group>

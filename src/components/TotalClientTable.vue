@@ -69,13 +69,12 @@
 
             <template v-slot:footer="">
                 <v-container class="pa-0">
-                    <v-row no-gutters class="d-flex justify-space-around">
+                    <v-row no-gutters class="ma-0 pa-0" justify="space-around">
                         <v-col
-                                cols="3"
                         >
                             <v-btn-toggle
                                     v-model="icon"
-                                    class="align-content-center"
+                                    class="align-content-center float-left"
                             >
                                 <v-btn value="left">
                                     <span class="hidden-sm-and-down">Все</span>
@@ -102,11 +101,11 @@
                             ></v-pagination>
                         </v-col>
                         <v-col
-                                cols="3"
                         >
                             <v-switch
                                     v-model="edit"
                                     :label="`Редактировать`"
+                                    class="float-right"
                             ></v-switch>
                         </v-col>
                     </v-row>
@@ -171,86 +170,35 @@
 </template>
 
 <script>
+    import { cashbox } from "../util/entity";
+    import { header } from "../util/entity";
     const API = 'http://localhost:8080';
     export default {
         data() {
             return {
                 icon: 'justify',
+
                 edit: false,
                 dialog: false,
-                search: '',
+
+                closeOnContentClick: true,
+                loading: true,
+
                 page: 1,
                 pageCount: 0,
                 itemsPerPage: 15,
+
                 height: 0,
-                loading: true,
+
+                headers: header,
+                search: '',
+
                 cashboxes: [],
-                headers: [
-                    // {text: "Id", value: "client.id", sortable: false},
-                    {text: "№ договора", value: "client.contract", sortable: false},
-                    {text: "Дата ввода", value: "dateEnter", sortable: false},
-                    {text: "УНП", value: "client.vat", sortable: false},
-                    {text: "Имя фирмы", value: "client.name", sortable: false},
-                    {text: "СКНО", value: "skno", sortable: false},
-                    // {text: "casId", value: "id", sortable: false},
-                    {text: "КСА", value: "nameModel", sortable: false},
-                    {text: "Адрес", value: "address", sortable: false},
-                    {text: "Год выпуска", value: "dateCreate", sortable: false},
-                    {text: "Мастер", value: "master", sortable: false},
-                    // {text: '', value: 'data-table-expand'},
-                    {text: '', value: 'actions', sortable: false},
-                ],
                 masters: [],
-                closeOnContentClick: true,
+
                 editedIndex: -1,
-                editedItem: {
-                    address: '',
-                    client: {
-                        contract: '',
-                        id: 0,
-                        mail: '',
-                        masters: {},
-                        name: '',
-                        nonresident: false,
-                        vat: 0,
-                    },
-                    dateCreate: '',
-                    dateEnter: '',
-                    id: 0,
-                    master: {
-                        avatar: null,
-                        clients: Array(0),
-                        id: 0,
-                        name: '',
-                    },
-                    nameModel: '',
-                    serialNumber: '',
-                    skno: false,
-                },
-                defaultItem: {
-                    address: '',
-                    client: {
-                        contract: '',
-                        id: 0,
-                        mail: '',
-                        masters: {},
-                        name: '',
-                        nonresident: false,
-                        vat: 0,
-                    },
-                    dateCreate: '',
-                    dateEnter: '',
-                    id: 0,
-                    master: {
-                        avatar: null,
-                        clients: Array(0),
-                        id: 0,
-                        name: '',
-                    },
-                    nameModel: '',
-                    serialNumber: '',
-                    skno: false,
-                },
+                editedItem:  cashbox,
+                defaultItem: cashbox,
             }
         },
         created() {
